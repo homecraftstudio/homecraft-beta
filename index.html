@@ -6,7 +6,7 @@
 <title data-i18n="meta.titel">HomeCraft beta</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<meta name="description" data-i18n-content="meta.omschrijving" content="The HomeCraft beta is coming soon.">
+<meta name="description" data-i18n-content="meta.omschrijving" content="The HomeCraft open beta is coming soon.">
 <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d141c" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HomeCraft">
 <meta property="og:title" content="HomeCraft beta">
-<meta property="og:description" data-i18n-content="og.omschrijving" content="Coming soon. Your home in 3D, live in Home Assistant.">
+<meta property="og:description" data-i18n-content="og.omschrijving" content="Open beta: coming soon. Your home in 3D, live in Home Assistant.">
 <meta property="og:image" content="https://beta.homecraft.studio/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -66,16 +66,13 @@
 <main id="inhoud">
   <div class="wacht" data-staat="wacht" aria-busy="true"></div>
 
-  <!-- Zonder (geldige) uitnodiging -->
-  <div class="dicht" data-staat="dicht ongeldig" hidden>
+  <!-- Gesloten (BETA_OPEN = false): Coming soon -->
+  <div class="dicht" data-staat="dicht" hidden>
     <div class="wrap">
       <div class="dicht-kaart">
-        <div class="dicht-ico" data-staat="dicht"><svg aria-hidden="true"><use href="#i-klok"/></svg></div>
-        <div class="dicht-ico" data-staat="ongeldig" hidden><svg aria-hidden="true"><use href="#i-slot"/></svg></div>
-        <h1 data-staat="dicht" data-i18n="dicht.titel">Coming soon</h1>
-        <h1 data-staat="ongeldig" hidden data-i18n="dicht.ongeldig.titel">This invitation link is not valid</h1>
-        <p data-staat="dicht" data-i18n="dicht.tekst">The HomeCraft beta is coming soon. Got a personal invitation link? Open it to go straight to the installation guide.</p>
-        <p data-staat="ongeldig" hidden data-i18n="dicht.ongeldig">Check that you copied the whole link, or ask for a new one in the group.</p>
+        <div class="dicht-ico"><svg aria-hidden="true"><use href="#i-klok"/></svg></div>
+        <h1 data-i18n="dicht.titel">Open beta: coming soon</h1>
+        <p data-i18n="dicht.tekst">The HomeCraft open beta arrives here at the end of this month. You will then find a step-by-step installation guide on this page.</p>
         <div class="acties">
           <a class="knop knop-vol" href="https://homecraft.studio/"><svg aria-hidden="true"><use href="#i-thuis"/></svg><span data-i18n="dicht.knop">Back to homecraft.studio</span></a>
         </div>
@@ -84,12 +81,12 @@
   </div>
   <noscript>
     <div class="dicht"><div class="wrap"><div class="dicht-kaart">
-      <h1>Coming soon</h1>
+      <h1>Open beta: coming soon</h1>
       <p>Turn on JavaScript to view this page, or go to <a href="https://homecraft.studio/">homecraft.studio</a>.</p>
     </div></div></div>
   </noscript>
 
-  <!-- Met een geldige uitnodiging -->
+  <!-- De installatiegids -->
   <div data-staat="welkom" hidden>
     <div class="welkom">
       <div class="wrap">
@@ -173,7 +170,10 @@
 
 <footer class="voet">
   <div class="wrap">
-    <p data-i18n="voet.tekst">HomeCraft is an independent project and not affiliated with Home Assistant.</p>
+    <div>
+      <p data-i18n="voet.tekst">HomeCraft is an independent project and not affiliated with Home Assistant.</p>
+      <p class="voet-privacy" data-i18n="voet.privacy">Anonymous visitor count without cookies.</p>
+    </div>
     <nav aria-label="Footer" data-i18n-aria="voet.aria">
       <a href="https://homecraft.studio/">homecraft.studio</a>
     </nav>

@@ -1,4 +1,5 @@
-/* Toegang tot de beta via een uitnodigingslink (?u=<code>).
+/* Stille testtoegang tot de installatiegids via ?u=<code>, zolang de open beta nog niet open is.
+   De pagina noemt dit nergens; een ongeldige code geeft gewoon "Coming soon".
    Dit is een lichte drempel, geen beveiliging: de pagina is statisch. In de bron staan alleen
    SHA-256-hashes, nooit de codes zelf. Nieuwe code: node tools/maak-code.mjs
    Of de beta voor iedereen open is, staat in status.js (BETA_OPEN). Staat hij open, dan gaat elke
@@ -30,6 +31,7 @@
       el.hidden = el.getAttribute('data-staat').split(' ').indexOf(staat) < 0;
     });
     if (staat === 'welkom') {
+      (window.HC_TELQ = window.HC_TELQ || []).push('beta-gids'); // anonieme telling, zie teller.js
       document.querySelectorAll('[data-alleen-welkom]').forEach(function (el) { el.hidden = false; });
     }
   }
@@ -58,11 +60,11 @@
 
   if (code) {
     sha256(ZOUT + code).then(function (h) {
-      if (lijst.indexOf(h) >= 0) { bewaar(h); zonderCode(); toon('welkom'); }
+      if (lijst.indexOf(h) >= 0) { bewaar(h); zonderCode(); (window.HC_TELQ = window.HC_TELQ || []).push('beta-code'); toon('welkom'); }
       else {
         var opgeslagen = lees();
         if (opgeslagen && lijst.indexOf(opgeslagen) >= 0) { zonderCode(); toon('welkom'); }
-        else { toon('ongeldig'); }
+        else { zonderCode(); toon('dicht'); } // ongeldige code: stil, gewoon Coming soon
       }
     });
   } else {
