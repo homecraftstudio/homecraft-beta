@@ -1,6 +1,8 @@
 /* Toegang tot de beta via een uitnodigingslink (?u=<code>).
    Dit is een lichte drempel, geen beveiliging: de pagina is statisch. In de bron staan alleen
-   SHA-256-hashes, nooit de codes zelf. Nieuwe code: node tools/maak-code.mjs */
+   SHA-256-hashes, nooit de codes zelf. Nieuwe code: node tools/maak-code.mjs
+   Of de beta voor iedereen open is, staat in status.js (BETA_OPEN). Staat hij open, dan gaat elke
+   bezoeker naar de installatiegids op /#installeren; anders zien bezoekers zonder geldige code "Coming soon". */
 (function () {
   // BEGIN HASHES
   window.HC_BETA_HASHES = [
@@ -39,6 +41,17 @@
   function zonderCode() {
     url.searchParams.delete('u');
     history.replaceState(null, '', url.pathname + url.search + url.hash);
+  }
+
+  var BETA_IS_OPEN = typeof BETA_OPEN !== 'undefined' && BETA_OPEN === true;
+  var GIDS = '#installeren';
+
+  /* Beta open: iedereen naar de installatiegids (/#installeren), ?lang en andere parameters blijven staan. */
+  if (BETA_IS_OPEN) {
+    if (code) zonderCode();
+    toon('welkom');
+    if (location.pathname !== '/' || location.hash !== GIDS) location.replace('/' + location.search + GIDS);
+    return;
   }
 
   if (!window.crypto || !crypto.subtle) { toon('dicht'); return; }
