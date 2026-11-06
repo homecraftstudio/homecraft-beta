@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="nl" data-toegang="wacht">
+<html lang="en" data-toegang="wacht">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.titel">HomeCraft beta</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<meta name="description" data-i18n-content="meta.omschrijving" content="De beta van HomeCraft is alleen op uitnodiging.">
+<meta name="description" data-i18n-content="meta.omschrijving" content="The HomeCraft beta is by invitation only.">
 <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d141c" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,13 +15,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HomeCraft">
 <meta property="og:title" content="HomeCraft beta">
-<meta property="og:description" content="Alleen op uitnodiging. Je huis in 3D, live in Home Assistant.">
+<meta property="og:description" data-i18n-content="og.omschrijving" content="By invitation only. Your home in 3D, live in Home Assistant.">
 <meta property="og:image" content="https://beta.homecraft.studio/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://beta.homecraft.studio/img/og.jpg">
 <link rel="stylesheet" href="/style.css">
+<script>/* Vroege taalkeuze (zie i18n.js): ?lang=xx of de eerder gekozen taal; laadt de vertaling al tijdens het opbouwen. */
+(function(d){var h=d.documentElement,t=null;h.classList.add('js');try{t=new URLSearchParams(location.search).get('lang')}catch(e){}if(!t){try{t=localStorage.getItem('hc-taal')}catch(e){}}t=String(t||'').toLowerCase().slice(0,2);if(/^(nl|de|fr|es|zh|hi)$/.test(t)){h.lang=t==='zh'?'zh-Hans':t;h.classList.add('hc-vertaal');var s=d.createElement('script');s.src='/i18n/'+t+'.js';s.id='hc-taal-'+t;d.head.appendChild(s);setTimeout(function(){h.classList.remove('hc-vertaal')},3000)}})(document);</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -34,17 +36,27 @@
   <symbol id="i-start" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11a2.1 2.1 0 0 0-3-3L5 16l-1 4zM14 7l3 3"/></symbol>
   <symbol id="i-let" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 20h19L12 4zM12 10v4.5M12 17.5h.01"/></symbol>
   <symbol id="i-melden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V4.5M5 4.5h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-talen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-omlaag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></symbol>
   <symbol id="i-pijl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </svg>
 
 <header class="kop">
   <div class="wrap">
-    <a class="merk" href="https://homecraft.studio/" aria-label="HomeCraft"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
+    <a class="merk" href="https://homecraft.studio/" aria-label="HomeCraft, to homecraft.studio" data-i18n-aria="merk.aria"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
     <span class="pil">Beta</span>
     <div class="kop-rechts">
-      <div class="taal" role="group" aria-label="Taal / Language">
-        <button type="button" data-taal="nl" aria-pressed="true" lang="nl" title="Nederlands">NL</button>
-        <button type="button" data-taal="en" aria-pressed="false" lang="en" title="English">EN</button>
+      <div class="taal" data-taalkiezer>
+        <button type="button" class="taal-knop" aria-expanded="false" aria-controls="taal-lijst" aria-label="Language: English"><svg aria-hidden="true"><use href="#i-talen"/></svg><span class="taal-code" aria-hidden="true">EN</span><svg class="taal-pijl" aria-hidden="true"><use href="#i-omlaag"/></svg></button>
+        <ul class="taal-lijst" id="taal-lijst" hidden>
+          <li><a href="?lang=en" data-taal="en" lang="en" hreflang="en" aria-current="true">English</a></li>
+          <li><a href="?lang=nl" data-taal="nl" lang="nl" hreflang="nl">Nederlands</a></li>
+          <li><a href="?lang=de" data-taal="de" lang="de" hreflang="de">Deutsch</a></li>
+          <li><a href="?lang=fr" data-taal="fr" lang="fr" hreflang="fr">Français</a></li>
+          <li><a href="?lang=es" data-taal="es" lang="es" hreflang="es">Español</a></li>
+          <li><a href="?lang=zh" data-taal="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a></li>
+          <li><a href="?lang=hi" data-taal="hi" lang="hi" hreflang="hi">हिन्दी</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -58,19 +70,19 @@
     <div class="wrap">
       <div class="dicht-kaart">
         <div class="dicht-ico"><svg aria-hidden="true"><use href="#i-slot"/></svg></div>
-        <h1 data-i18n="dicht.titel">Deze beta is alleen op uitnodiging</h1>
-        <p data-staat="dicht" data-i18n="dicht.tekst">Je hebt een persoonlijke uitnodigingslink nodig om deze pagina te bekijken. Wil je weten wat HomeCraft is? Kijk op de website.</p>
-        <p data-staat="ongeldig" hidden data-i18n="dicht.ongeldig">Deze uitnodigingslink is niet (meer) geldig. Controleer of je de hele link hebt gekopieerd, of vraag een nieuwe in de groep.</p>
+        <h1 data-i18n="dicht.titel">This beta is by invitation only</h1>
+        <p data-staat="dicht" data-i18n="dicht.tekst">You need a personal invitation link to view this page. Curious what HomeCraft is? Have a look at the website.</p>
+        <p data-staat="ongeldig" hidden data-i18n="dicht.ongeldig">This invitation link is not (or no longer) valid. Check that you copied the whole link, or ask for a new one in the group.</p>
         <div class="acties">
-          <a class="knop knop-vol" href="https://homecraft.studio/"><svg aria-hidden="true"><use href="#i-thuis"/></svg><span data-i18n="dicht.knop">Naar homecraft.studio</span></a>
+          <a class="knop knop-vol" href="https://homecraft.studio/"><svg aria-hidden="true"><use href="#i-thuis"/></svg><span data-i18n="dicht.knop">Go to homecraft.studio</span></a>
         </div>
       </div>
     </div>
   </div>
   <noscript>
     <div class="dicht"><div class="wrap"><div class="dicht-kaart">
-      <h1>Deze beta is alleen op uitnodiging</h1>
-      <p>Zet JavaScript aan om je uitnodiging te controleren, of ga naar <a href="https://homecraft.studio/">homecraft.studio</a>.</p>
+      <h1>This beta is by invitation only</h1>
+      <p>Turn on JavaScript to check your invitation, or go to <a href="https://homecraft.studio/">homecraft.studio</a>.</p>
     </div></div></div>
   </noscript>
 
@@ -78,9 +90,9 @@
   <div data-staat="welkom" hidden>
     <div class="welkom">
       <div class="wrap">
-        <span class="label"><i aria-hidden="true"></i><span data-i18n="w.label">Beta · versie 0.4.0</span></span>
-        <h1 data-i18n="w.titel">Welkom bij de beta!</h1>
-        <p class="lead" data-i18n="w.lead">Fijn dat je meetest. Hieronder staat hoe je HomeCraft in Home Assistant installeert, waar je mee begint en hoe je een probleem meldt. Alles wat je vindt, helpt.</p>
+        <span class="label"><i aria-hidden="true"></i><span data-i18n="w.label">Beta · version 0.4.0</span></span>
+        <h1 data-i18n="w.titel">Welcome to the beta!</h1>
+        <p class="lead" data-i18n="w.lead">Thanks for testing. Below you will find how to install HomeCraft in Home Assistant, where to start and how to report a problem. Everything you find helps.</p>
       </div>
     </div>
 
@@ -88,66 +100,66 @@
       <div class="inhoud">
         <div class="kolom">
         <section class="blok" id="installeren" aria-labelledby="h-inst">
-          <h2 id="h-inst"><span class="ico"><svg aria-hidden="true"><use href="#i-download"/></svg></span><span data-i18n="inst.titel">Installeren</span></h2>
+          <h2 id="h-inst"><span class="ico"><svg aria-hidden="true"><use href="#i-download"/></svg></span><span data-i18n="inst.titel">Install</span></h2>
           <ol>
-            <li data-i18n-html="inst.1">Ga in Home Assistant naar <span class="pad">Instellingen <span>→</span> Marketplace</span> (voorheen HACS).</li>
-            <li data-i18n-html="inst.2">Kies rechtsboven <span class="pad">⋮ <span>→</span> Eigen repository</span>.</li>
+            <li data-i18n-html="inst.1">In Home Assistant, go to <span class="pad">Settings <span>→</span> Marketplace</span> (formerly HACS).</li>
+            <li data-i18n-html="inst.2">In the top right, choose <span class="pad">⋮ <span>→</span> Custom repositories</span>.</li>
             <li>
-              <span data-i18n-html="inst.3">Plak deze URL en kies als categorie <span class="pad">Integratie</span>:</span>
+              <span data-i18n-html="inst.3">Paste this URL and choose the category <span class="pad">Integration</span>:</span>
               <div class="kopie">
                 <code id="repo-url">https://github.com/homecraftstudio/homecraft</code>
-                <button type="button" class="knop knop-rand" id="kopieer" data-kopieer="#repo-url"><svg aria-hidden="true"><use href="#i-kopie"/></svg><span data-i18n="inst.kopieer">Kopiëren</span></button>
+                <button type="button" class="knop knop-rand" id="kopieer" data-kopieer="#repo-url"><svg aria-hidden="true"><use href="#i-kopie"/></svg><span data-i18n="inst.kopieer">Copy</span></button>
               </div>
               <span class="sr" role="status" aria-live="polite" id="kopie-status"></span>
             </li>
-            <li data-i18n-html="inst.4">Zoek <span class="pad">HomeCraft</span> in de lijst en installeer het.</li>
-            <li data-i18n-html="inst.5">Herstart Home Assistant.</li>
-            <li data-i18n-html="inst.6">Ga naar <span class="pad">Instellingen <span>→</span> Apparaten en diensten <span>→</span> Integratie toevoegen</span> en kies <span class="pad">HomeCraft</span>.</li>
-            <li data-i18n-html="inst.7">Open <span class="pad">HomeCraft</span> in de zijbalk.</li>
+            <li data-i18n-html="inst.4">Find <span class="pad">HomeCraft</span> in the list and install it.</li>
+            <li data-i18n-html="inst.5">Restart Home Assistant.</li>
+            <li data-i18n-html="inst.6">Go to <span class="pad">Settings <span>→</span> Devices &amp; services <span>→</span> Add integration</span> and choose <span class="pad">HomeCraft</span>.</li>
+            <li data-i18n-html="inst.7">Open <span class="pad">HomeCraft</span> in the sidebar.</li>
           </ol>
-          <p class="tip" data-i18n="inst.tip">Een nieuwe versie verschijnt vanzelf als update in Home Assistant. Na een update even herstarten en de pagina herladen.</p>
+          <p class="tip" data-i18n="inst.tip">A new version shows up as an update in Home Assistant. After updating, restart and reload the page.</p>
         </section>
         <section class="blok" id="beginnen" aria-labelledby="h-begin">
-          <h2 id="h-begin"><span class="ico"><svg aria-hidden="true"><use href="#i-start"/></svg></span><span data-i18n="begin.titel">Eerste stappen</span></h2>
+          <h2 id="h-begin"><span class="ico"><svg aria-hidden="true"><use href="#i-start"/></svg></span><span data-i18n="begin.titel">First steps</span></h2>
           <ol>
-            <li data-i18n-html="begin.1">Kies in het lege paneel <span class="pad">Plattegrond tekenen</span> en teken muren, ruimtes, deuren en ramen. Of begin met het <span class="pad">voorbeeldhuis</span> om eerst rond te kijken.</li>
-            <li data-i18n-html="begin.2">Kies <span class="pad">Bewerken</span>: de lichtpunten uit je plattegrond staan gestippeld klaar. Tik erop en koppel ze aan je lampen.</li>
-            <li data-i18n="begin.3">Zet apparaten neer en koppel ze; kies het model uit de galerij.</li>
-            <li data-i18n-html="begin.4">Maak een back-up via <span class="pad">Instellingen <span>→</span> Back-up</span> voordat je grote dingen uitprobeert.</li>
+            <li data-i18n-html="begin.1">In the empty panel, choose <span class="pad">Draw floor plan</span> and draw walls, rooms, doors and windows. Or start with the <span class="pad">sample house</span> to look around first.</li>
+            <li data-i18n-html="begin.2">Choose <span class="pad">Edit</span>: the light points from your floor plan are shown dotted. Tap one and connect it to your lamps.</li>
+            <li data-i18n="begin.3">Place devices and connect them; pick the model from the gallery.</li>
+            <li data-i18n-html="begin.4">Make a backup via <span class="pad">Settings <span>→</span> Backup</span> before trying big changes.</li>
           </ol>
         </section>
         <section class="blok" id="melden" aria-labelledby="h-meld">
-          <h2 id="h-meld"><span class="ico"><svg aria-hidden="true"><use href="#i-melden"/></svg></span><span data-i18n="meld.titel">Probleem melden</span></h2>
-          <p data-i18n="meld.tekst">Iets kapot, onduidelijk of lelijk? Meld het op GitHub. Zet erbij:</p>
+          <h2 id="h-meld"><span class="ico"><svg aria-hidden="true"><use href="#i-melden"/></svg></span><span data-i18n="meld.titel">Report a problem</span></h2>
+          <p data-i18n="meld.tekst">Something broken, unclear or ugly? Report it on GitHub. Please include:</p>
           <ul>
-            <li data-i18n-html="meld.1">je <strong>Home Assistant-versie</strong> (Instellingen → Over) en de HomeCraft-versie;</li>
-            <li data-i18n-html="meld.2">je <strong>browser</strong> en de versie ervan;</li>
-            <li data-i18n-html="meld.3">je <strong>apparaat</strong>: computer, tablet of telefoon;</li>
-            <li data-i18n-html="meld.4">wat je deed, wat je verwachtte en wat er gebeurde, met een <strong>schermafdruk</strong>.</li>
+            <li data-i18n-html="meld.1">your <strong>Home Assistant version</strong> (Settings → About) and the HomeCraft version;</li>
+            <li data-i18n-html="meld.2">your <strong>browser</strong> and its version;</li>
+            <li data-i18n-html="meld.3">your <strong>device</strong>: computer, tablet or phone;</li>
+            <li data-i18n-html="meld.4">what you did, what you expected and what happened, with a <strong>screenshot</strong>.</li>
           </ul>
-          <p class="tip" data-i18n="meld.privé">Meldingen op GitHub zijn openbaar. Zet er geen persoonlijke gegevens, adressen, wachtwoorden of tokens in.</p>
+          <p class="tip" data-i18n="meld.privé">Reports on GitHub are public. Do not include personal data, addresses, passwords or tokens.</p>
           <div class="acties">
-            <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft/issues/new" rel="noopener"><svg aria-hidden="true"><use href="#i-melden"/></svg><span data-i18n="meld.knop">Probleem melden op GitHub</span></a>
+            <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft/issues/new" rel="noopener"><svg aria-hidden="true"><use href="#i-melden"/></svg><span data-i18n="meld.knop">Report a problem on GitHub</span></a>
           </div>
         </section>
         </div>
         <div class="kolom">
         <section class="blok" id="eisen" aria-labelledby="h-eisen">
-          <h2 id="h-eisen"><span class="ico"><svg aria-hidden="true"><use href="#i-lijst"/></svg></span><span data-i18n="eisen.titel">Wat heb je nodig</span></h2>
+          <h2 id="h-eisen"><span class="ico"><svg aria-hidden="true"><use href="#i-lijst"/></svg></span><span data-i18n="eisen.titel">What you need</span></h2>
           <ul>
-            <li data-i18n-html="eisen.1">Home Assistant <strong>2024.7</strong> of nieuwer.</li>
-            <li data-i18n-html="eisen.2">De Marketplace (voorheen HACS) in Home Assistant.</li>
-            <li data-i18n-html="eisen.3">Een recente browser met <strong>WebGL2</strong>, op computer, tablet of telefoon.</li>
-            <li data-i18n="eisen.4">Voor een wandtablet: een tablet van de laatste jaren, met de browser op volledig scherm.</li>
+            <li data-i18n-html="eisen.1">Home Assistant <strong>2024.7</strong> or newer.</li>
+            <li data-i18n-html="eisen.2">The Marketplace (formerly HACS) in Home Assistant.</li>
+            <li data-i18n-html="eisen.3">A recent browser with <strong>WebGL2</strong>, on desktop, tablet or phone.</li>
+            <li data-i18n="eisen.4">For a wall tablet: a tablet from recent years, with the browser in full screen.</li>
           </ul>
         </section>
         <section class="blok" id="beperkingen" aria-labelledby="h-bep">
-          <h2 id="h-bep"><span class="ico"><svg aria-hidden="true"><use href="#i-let"/></svg></span><span data-i18n="bep.titel">Bekende beperkingen</span></h2>
+          <h2 id="h-bep"><span class="ico"><svg aria-hidden="true"><use href="#i-let"/></svg></span><span data-i18n="bep.titel">Known limitations</span></h2>
           <ul>
-            <li data-i18n="bep.1">Dit is een beta: er kan nog iets haperen of veranderen tussen versies. Maak regelmatig een back-up.</li>
-            <li data-i18n="bep.2">Gebeurtenissen en vaste zoomplekken in het huis volgen later.</li>
-            <li data-i18n-html="bep.3">Op een zwakke tablet kiest HomeCraft zelf een lichtere kwaliteit. Hapert het toch, zet dan <code>?rch_quality=low</code> achter het adres.</li>
-            <li data-i18n="bep.4">De kant-en-klare meubels zijn een los, optioneel pakket; zonder kun je gewoon tekenen en inrichten met wat er is.</li>
+            <li data-i18n="bep.1">This is a beta: things may still break or change between versions. Make regular backups.</li>
+            <li data-i18n="bep.2">Events and fixed zoom spots in the house will come later.</li>
+            <li data-i18n-html="bep.3">On a weak tablet HomeCraft picks a lighter quality by itself. If it still stutters, add <code>?rch_quality=low</code> to the address.</li>
+            <li data-i18n="bep.4">The ready-made furniture is a separate, optional pack; without it you can still draw and furnish with what is there.</li>
           </ul>
         </section>
         </div>
@@ -158,14 +170,13 @@
 
 <footer class="voet">
   <div class="wrap">
-    <p data-i18n="voet.tekst">HomeCraft is een zelfstandig project en niet verbonden aan Home Assistant.</p>
-    <nav aria-label="Voettekst" data-i18n-aria="voet.aria">
+    <p data-i18n="voet.tekst">HomeCraft is an independent project and not affiliated with Home Assistant.</p>
+    <nav aria-label="Footer" data-i18n-aria="voet.aria">
       <a href="https://homecraft.studio/">homecraft.studio</a>
       <a href="https://github.com/homecraftstudio/homecraft">GitHub</a>
     </nav>
   </div>
 </footer>
-<script src="/teksten-en.js"></script>
 <script src="/i18n.js"></script>
 <script src="/toegang.js"></script>
 <script src="/beta.js"></script>

@@ -10,9 +10,10 @@
   var knop = document.getElementById('kopieer');
   var status = document.getElementById('kopie-status');
   if (!knop) return;
+  // Teksten in de gekozen taal (i18n.js); Engels als terugval.
   var tekst = function (k) {
-    var en = document.documentElement.lang === 'en';
-    return { klaar: en ? 'Copied' : 'Gekopieerd', mis: en ? 'Select and copy' : 'Selecteer en kopieer', terug: en ? 'Copy' : 'Kopiëren' }[k];
+    var T = window.HC_T || function (s, en) { return en; };
+    return { klaar: T('inst.gekopieerd', 'Copied'), mis: T('inst.selecteer', 'Select and copy'), terug: T('inst.kopieer', 'Copy') }[k];
   };
   function selecteer(el) {
     var r = document.createRange(); r.selectNodeContents(el);
